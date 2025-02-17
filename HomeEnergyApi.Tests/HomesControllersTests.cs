@@ -105,8 +105,8 @@ public class HomesControllersTests
 
         var getAllResponse = await client.GetAsync("/Homes");
         string getAllResponseStr = await getAllResponse.Content.ReadAsStringAsync();
-        dynamic getAllResponseObj = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(getAllResponseStr);
-        string urlId = getAllResponseObj[getAllResponseObj.Count - 1].Id;
+        dynamic? getAllResponseObj = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(getAllResponseStr);
+        string urlId = getAllResponseObj?[getAllResponseObj.Count - 1].Id ?? "";
         url = url + $"/{urlId}";
 
         HomeDto putTestHomeDto = testHomeDto;

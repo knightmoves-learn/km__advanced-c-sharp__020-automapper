@@ -75,6 +75,7 @@ public class FileTests
             "HomeEnergyApi/Program.cs does not call Database.Migrate()");
     }
 
+    [Fact]
     public void DoesProgramAddAutoMapperWithTypeHomeProfile()
     {
         bool containsAutoMapperHomeProfile = programContent.Contains("builder.Services.AddAutoMapper(typeof(HomeProfile));");
