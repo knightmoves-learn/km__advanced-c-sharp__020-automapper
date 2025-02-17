@@ -10,6 +10,8 @@ namespace HomeEnergyApi.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            // Disable foreign key constraints temporarily
+            migrationBuilder.Sql("PRAGMA foreign_keys = OFF;", suppressTransaction: true);
             migrationBuilder.CreateTable(
                 name: "UtilityProviders",
                 columns: table => new
@@ -34,6 +36,8 @@ namespace HomeEnergyApi.Migrations
                 name: "IX_UtilityProviders_HomeId",
                 table: "UtilityProviders",
                 column: "HomeId");
+            // Re-enable foreign key constraints
+            migrationBuilder.Sql("PRAGMA foreign_keys = ON;", suppressTransaction: true);
         }
 
         /// <inheritdoc />
