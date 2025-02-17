@@ -21,7 +21,6 @@ namespace HomeEnergyApi.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     MonthlyElectricUsage = table.Column<int>(type: "INTEGER", nullable: false),
-                    HasSolar = table.Column<bool>(type: "INTEGER", nullable: false),
                     HomeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

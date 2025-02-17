@@ -1,60 +1,38 @@
-# 017 Task Based Async Pattern
+# 020 Automapper
 
 ## Lecture
 
-[![# One To One Relationship](https://img.youtube.com/vi/hNoaqRD51Mo/0.jpg)](https://www.youtube.com/watch?v=hNoaqRD51Mo)
+[![# Automapper (Part 1)](https://img.youtube.com/vi/LUOpye2AxVk/0.jpg)](https://www.youtube.com/watch?v=LUOpye2AxVk)
+[![# Automapper (Part 2)](https://img.youtube.com/vi/qwR-L7Eh4Gs/0.jpg)](https://www.youtube.com/watch?v=qwR-L7Eh4Gs)
 
 ## Instructions
 
-In `HomeEnergyApi/Dtos/HomeDto.cs`
-- Create a public class `HomeDto`
-    - Give `HomeDto` the following public properties / types
-        - OwnerLastName / `string`
-            - Give OwnerLastName the "Required" attribute
-        - StreetAddress / `string?`
-            - Give StreetAddress validation to ensure it cannot be longer than 40 characters
-        - City / `string?`
-        - MonthlyElectricUsage / `int?`
-        - ProvidedUtilities / `ICollection<string>?`
-    - Ensure all properties have getters/setters
-
-In `HomeEnergyApi/Models/HomeModel.cs`
-- Remove all validation from properties on `Home`
+In `HomeEnergyApi/Dtos/HomeProfile.cs`
+- Create a public class `HomeProfile` Implementing `Profile`
+    - Give `HomeProfile` a constructor taking zero arguments
+        - In the body of the constructor, using the lecture as an example and the resource linked at the end of the lesson, write an AutoMapper profile that can replace the functionality in the `Map()` method in `HomeEnergyApi/Models/HomeAdminControllers.cs`
 
 In `HomeEnergyApi/Models/HomeAdminControllers.cs`
-- On `HomeAdminController`, create a new public method `Map()`
-    - This method should return a `Home`
-    - This method should accept one argument of type `HomeDto`
-    - The method should create a new `Home` to be returned by passing the `OwnerLastName`, `StreetAddress`, and `City` properties on the passed `HomeDto` into the `Home` constructor.
-    - If the passed `HomeDto` has a non-null `MonthlyElectricUsageValue`...
-        - Create a new `HomeUsageData` with it's `MonthlyElectricUsage` property set to the value of the passed `HomeDto.MonthlyElectricUsage`
-        - On the `Home` to be returned, set `HomeUsageData` to the newly created `HomeUsageData`
-    - If the passed `HomeDto` has a non null `ProvidedUtilities`...
-        - Add a new `UtilityProvider` on the home to be returned for each value in the `ProvidedUtilites` on the passed `HomeDto`, where its `ProvidedUtility` corresponds to a value in `ProvidedUtilities` on the passed `HomeDto`
-            - (ex. If the passed `HomeDto.ProvidedUtilities` is a list with the values "Water" and "Gas", the returned home should have two `UtilityProvider`s, one with a `ProvidedUtility` of "Water" and the other with "Gas")
-- Convert `CreateHome()` to take one argument of type `HomeDto`
-    - Refactor the method so that the passed `HomeDto` is mapped to a home using the `Map()` function and a home is still saved and returned in the body of the method
-- Convert `UpdateHome()` to take one argument of type `HomeDto`
-    - Refactor the method so that the passed `HomeDto` is mapped to a home using the `Map()` function and a home is still updated and returned in the body of the method if found.
+- Add a private property `mapper` of type `IMapper`
+- Add an argument of type `IMapper` to `HomeAdminController`s constructor, and set it's value to the newly created property `mapper`
+- Remove the Map() method
+- Replace any refrences to the removed `Map()` method, to instead use the newly created `mapper` property
 
-In your terminal
-- ONLY IF you are working on codespaces or a different computer/environment as the previous lesson and don't have `dotnet-ef` installed globally, run `dotnet tool install --global dotnet-ef`, otherwise skip this step
-    - To check if you have `dotnet-ef` installed, run `dotnet-ef --version`
-- Run `dotnet ef migrations add AddHomeDtoChanges`
-- Run `dotnet ef database update`
+In `HomeEnergyApi/Program.cs`
+- Add an AutoMapper service, passing the `HomeProfile` type as an argument.
     
 ## Additional Information
 - Some Models may have changed for this lesson from the last, as always all code in the lesson repository is available to view
 - Along with `using` statements being added, any packages needed for the assignment have been pre-installed for you, however in the future you may need to add these yourself
 
 ## Building toward CSTA Standards:
-- Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects (3A-AP-17)
-- Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs (3A-AP-18)
-- Evaluate the tradeoffs in how data elements are organized and where data is stored (3A-DA-10)
-- Compare and contrast fundamental data structures and their uses (3B-AP-12)
-- Construct solutions to problems using student-created components, such as procedures, modules and/or objects (3B-AP-14)
+- Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests (3A-AP-13) https://www.csteachers.org/page/standards
+- Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects (3A-AP-17) https://www.csteachers.org/page/standards
+- Create artifacts by using procedures within a program, combinations of data and procedures, or independent but interrelated programs (3A-AP-18) https://www.csteachers.org/page/standards
+- Use and adapt classic algorithms to solve computational problems (3B-AP-10) https://www.csteachers.org/page/standards
+- Demonstrate code reuse by creating programming solutions using libraries and APIs (3B-AP-16) https://www.csteachers.org/page/standards
 
 ## Resources
-- https://en.wikipedia.org/wiki/Data_transfer_object
+- https://github.com/AutoMapper/AutoMapper
 
 Copyright &copy; 2025 Knight Moves. All Rights Reserved.

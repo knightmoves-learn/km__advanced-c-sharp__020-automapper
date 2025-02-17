@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace HomeEnergyApi.Models
+namespace HomeEnergyApi.Dtos
 {
     public class HomeDto
     {

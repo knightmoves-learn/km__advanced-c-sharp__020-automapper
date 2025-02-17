@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HomeEnergyApi.Models;
 using HomeEnergyApi.Services;
+using HomeEnergyApi.Dtos;
 using AutoMapper;
 
 namespace HomeEnergyApi.Controllers

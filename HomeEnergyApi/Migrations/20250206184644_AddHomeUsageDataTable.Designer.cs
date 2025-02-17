@@ -47,9 +47,6 @@ namespace HomeEnergyApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("HasSolar")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("HomeId")
                         .HasColumnType("INTEGER");
 
