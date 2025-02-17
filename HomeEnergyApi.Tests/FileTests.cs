@@ -78,5 +78,7 @@ public class FileTests
     public void DoesProgramAddAutoMapperWithTypeHomeProfile()
     {
         bool containsAutoMapperHomeProfile = programContent.Contains("builder.Services.AddAutoMapper(typeof(HomeProfile));");
+        Assert.True(containsAutoMapperHomeProfile,
+            "HomeEnergyApi/Program.cs adds an Automapper service with type HomeProfile");
     }
 }

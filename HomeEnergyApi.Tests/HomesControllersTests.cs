@@ -5,7 +5,9 @@ using System.Dynamic;
 using System.Data.SQLite;
 using HomeEnergyApi.Models;
 using HomeEnergyApi.Controllers;
+using HomeEnergyApi.Dtos;
 using HomeEnergyApi.Tests.Extensions;
+
 
 [TestCaseOrderer("HomeEnergyApi.Tests.Extensions.PriorityOrderer", "HomeEnergyApi.Tests")]
 public class HomesControllersTests
