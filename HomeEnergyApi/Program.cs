@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using HomeEnergyApi.Models;
 using HomeEnergyApi.Services;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<HomeDbContext>(options =>
     options.UseSqlite("Data Source=Homes.db"));
 
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(HomeProfile));
 
 var app = builder.Build();
 
