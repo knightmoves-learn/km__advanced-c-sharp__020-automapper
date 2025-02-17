@@ -4,6 +4,7 @@ using HomeEnergyApi.Models;
 using HomeEnergyApi.Services;
 using HomeEnergyApi.Dtos;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,8 @@ builder.Services.AddTransient<ZipCodeLocationService>();
 builder.Services.AddHttpClient<ZipCodeLocationService>();
 
 builder.Services.AddDbContext<HomeDbContext>(options =>
-    options.UseSqlite("Data Source=Homes.db"));
+    options.UseSqlite("Data Source=Homes.db").ConfigureWarnings(warings =>
+    warings.Ignore(RelationalEventId.NonTransactionalMigrationOperationWarning)));
 
 builder.Services.AddControllers();
 
