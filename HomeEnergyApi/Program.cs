@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using HomeEnergyApi.Models;
 using HomeEnergyApi.Services;
+using HomeEnergyApi.Dtos;
 using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
