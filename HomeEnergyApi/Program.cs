@@ -21,6 +21,8 @@ builder.Services.AddDbContext<HomeDbContext>(options =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddAutoMapper(typeof(HomeProfile));
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
