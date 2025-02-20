@@ -12,7 +12,7 @@ In `HomeEnergyApi/Dtos/HomeProfile.cs`
     - Give `HomeProfile` a constructor taking zero arguments
         - In the body of the constructor, using the lecture as an example and the resource linked at the end of the lesson, write an AutoMapper profile that can replace the functionality in the `Map()` method in `HomeEnergyApi/Models/HomeAdminControllers.cs`
 
-In `HomeEnergyApi/Models/HomeAdminControllers.cs`
+In `HomeEnergyApi/Controllers/HomeAdminControllers.cs`
 - Add a private property `mapper` of type `IMapper`
 - Add an argument of type `IMapper` to `HomeAdminController`s constructor, and set it's value to the newly created property `mapper`
 - Remove the Map() method
